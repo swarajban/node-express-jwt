@@ -78,7 +78,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get('/', function (req, res, next) {
-
   if (req.user) {
       res.render('index', {
       user: req.user
@@ -90,11 +89,45 @@ app.get('/', function (req, res, next) {
 
 
 app.get('/access/jwt',
-  passport.authenticate('jwt', {
-    successRedirect: '/',
-    failureRedirect: '/jwtError' // TODO: log real error
-  })
+  function (req, res, next) {
+    passport.authenticate('jwt',
+      function (err, user, info) {
+        if (err) {
+          return next(err);
+        }
+
+        if (! user) { // failed to authenticate
+          res.redirect('/jwtError');
+        }
+
+        // parse returnTo
+        var redirectDest = '/';
+        var returnTo = req.query.returnTo;
+        if (returnTo !== undefined) {
+          redirectDest = returnTo;
+        }
+
+        req.logIn(
+          user,
+          function (err) {
+            if (err) {
+              return next(err);
+            }
+            return res.redirect(redirectDest);
+          }
+        )
+
+      }
+    )(req, res, next);
+  }
 );
+
+app.get('/jwtError', function (req, res) {
+  res.render('message', {
+    message: 'error authenticating with JTW'
+  });
+});
+
 
 
 app.listen(
