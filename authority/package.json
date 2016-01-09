@@ -1,7 +1,7 @@
 {
-  "name": "node-express-jwt",
+  "name": "authority",
   "version": "1.0.0",
-  "description": "Sample repository for a an Express node server that can generate JWTs",
+  "description": "Sample Express server for authority who will authenticate users and generate JWTs",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
