@@ -3,10 +3,13 @@ var express = require('express');
 var app = express();
 
 app.set('port', process.env.EXPRESS_PORT || 3000);
+app.set('views', './views');
+app.set('view engine', 'jade');
 
 app.get('/', function (req, res) {
-  res.json({
-    hello: 'world'
+  res.render('index', {
+    title: 'Hello',
+    message: 'world'
   });
 });
 
