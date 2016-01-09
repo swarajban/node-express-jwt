@@ -2,11 +2,11 @@
   "ids": {
     "1": {
       "id": "1",
-      "username": "jwt-jedi",
+      "email": "jwt-jedi@jedi.com",
       "password": "fn2187"
     }
   },
-  "usernames": {
-    "jwt-jedi": "1"
+  "emails": {
+    "jwt-jedi@gmail.com": "1"
   }
 }

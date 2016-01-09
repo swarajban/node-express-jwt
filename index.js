@@ -45,8 +45,12 @@ passport.deserializeUser(
 // Local strategy
 passport.use(
   new LocalStrategy(
+    {
+      usernameField: 'email',
+      passwordField: 'password'
+    },
     function (username, password, done) {
-      var userID = users.usernames[username];
+      var userID = users.emails[username];
       if (userID !== undefined) {
         var user = users.ids[userID];
         if (user.password === password) {
@@ -76,11 +80,12 @@ app.get('/', function (req, res) {
 });
 
 app.get('/sso', function (req, res) {
-  res.render('login');
+  res.render('login', {
+    loginRoute: '/sso'
+  });
 });
 
-app.post(
-  '/sso',
+app.post('/sso',
   passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/sso'

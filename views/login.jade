@@ -4,10 +4,10 @@ block title
   title Home
 
 block content
-  form(action='/sso', method='post')
+  form(action='#{loginRoute}', method='post')
     div.form-group
-      label(for='username') Username
-      input#username.form-control(type='text', placeholder='username', name='username')
+      label(for='email') Email
+      input#email.form-control(type='text', placeholder='you@example.com', name='email')
     div.form-group
       label(for='password') Password
         input#password.form-control(type='password', name='password')
