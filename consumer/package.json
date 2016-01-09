@@ -4,6 +4,7 @@
   "description": "Sample Express server for consumer who will use JWTs from authority to authenticate",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
