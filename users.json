@@ -1,0 +1,12 @@
+{
+  "ids": {
+    "1": {
+      "id": "1",
+      "username": "jwt-jedi",
+      "password": "fn2187"
+    }
+  },
+  "usernames": {
+    "jwt-jedi": "1"
+  }
+}

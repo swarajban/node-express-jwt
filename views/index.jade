@@ -4,4 +4,7 @@ block title
   title Home
 
 block content
-  h1 Home Page
+  if user
+    h1 Hello #{user.username}
+  else
+    h1 Not logged in, but hello
