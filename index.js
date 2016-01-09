@@ -46,7 +46,6 @@ passport.deserializeUser(
 passport.use(
   new LocalStrategy(
     function (username, password, done) {
-      console.log('sup');
       var userID = users.usernames[username];
       if (userID !== undefined) {
         var user = users.ids[userID];
