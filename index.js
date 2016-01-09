@@ -75,15 +75,15 @@ app.get('/', function (req, res) {
   });
 });
 
-app.get('/login', function (req, res) {
+app.get('/sso', function (req, res) {
   res.render('login');
 });
 
 app.post(
-  '/login',
+  '/sso',
   passport.authenticate('local', {
     successRedirect: '/',
-    failureRedirect: '/login'
+    failureRedirect: '/sso'
   })
 );
 
