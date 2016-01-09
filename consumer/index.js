@@ -77,8 +77,15 @@ passport.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/', function (req, res) {
-  res.render('index');
+app.get('/', function (req, res, next) {
+
+  if (req.user) {
+      res.render('index', {
+      user: req.user
+    });
+  } else { // Get JWT auth from authority server
+    return res.redirect('http://localhost:3000/jwt-sso?returnTo=http://localhost:3001/');
+  }
 });
 
 
@@ -88,12 +95,6 @@ app.get('/access/jwt',
     failureRedirect: '/jwtError' // TODO: log real error
   })
 );
-
-app.get('/jwtError', function (req, res) {
-  res.render('message', {
-    message: 'error authenticating with JTW'
-  });
-});
 
 
 app.listen(

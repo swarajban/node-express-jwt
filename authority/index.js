@@ -18,6 +18,7 @@ app.set('port', process.env.EXPRESS_PORT || 3000);
 app.set('views', './views');
 app.set('view engine', 'jade');
 
+app.set('consumer-jwt-endpoint', 'http://localhost:3001/access/jwt');
 app.set('my-domain', process.env.DOMAIN || 'example.com');
 app.set('jwt-secret', process.env.JWT_SECRET || 'pc-load-letter');
 
@@ -102,7 +103,8 @@ app.post('/sso',
 app.get('/jwt-sso',
   function (req, res) {
     res.render('login', {
-      loginRoute: '/jwt-sso'
+      loginRoute: '/jwt-sso',
+      returnTo: req.query.returnTo
     });
   }
 );
@@ -135,9 +137,14 @@ app.post('/jwt-sso',
         var token = jwt.sign(jwtPayload, jwtSecret, jwtOptions);
         console.log('Created JWT: ' + token);
 
-        res.render('message', {
-          message: 'JWT: ' + token
-        });
+        var returnTo = req.body.returnTo;
+
+        var redirectUrl = app.get('consumer-jwt-endpoint');
+        redirectUrl += '?auth_token=' + token;
+        if (returnTo !== undefined) {
+          redirectUrl += '&returnTo=' + returnTo;
+        }
+        return res.redirect(redirectUrl);
       }
     )(req, res, next);
   }
