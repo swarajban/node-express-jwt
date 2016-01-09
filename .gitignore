@@ -1,3 +1,6 @@
+.idea
+node-express-jwt.iml
+
 # Logs
 logs
 *.log
