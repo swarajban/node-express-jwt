@@ -147,6 +147,6 @@ app.post('/jwt-sso',
 app.listen(
   app.get('port'),
   function () {
-    console.log('Example app listening on port '  + app.get('port'));
+    console.log('Authority server listening on port '  + app.get('port'));
   }
 );
