@@ -28,7 +28,7 @@ $ ./run_consumer.sh
 1. The Consumer server will detect you are not logged in
 1. You will be redirected to the authority server to login (localhost:3000)
 1. Log in with the following credentials
-	- email: jwt-jedi@jedi.com
+	- email: jwt-jedi@gmail.com
 	- password: fn2187
 1. The authority server will log you in, generate a JWT and redirect you back to Consumer server
 1. You will be logged in to Consumer server via the JWT generated from authority
